@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- Define your beans here -->
+    <!--<bean id="myCoach"
+          class="com.project.springdemo.BasebalCoach">
+
+    </bean>-->
+
+    <!-- Inyeccion de dependencias de campos mediante fichero externo-->
+    <context:property-placeholder location="classpath:companyData.properties2"/>
+
+    <!-- Create the dependency-->
+    <bean id="myReport" class="com.course.springDI.Report">
+
+
+    </bean>
+
+
+    <!-- Inyeccion  de dependencias en el constructor -->
+    <bean id="employee" class="com.course.springDI.Director">
+        <constructor-arg ref="myReport"></constructor-arg>
+        <!-- Inyeccion de dependencias mediante campos de fichero externo-->
+        <property name="email" value="${email}"></property>
+        <property name="companyName" value="${companyName}"></property>
+
+    </bean>
+
+    <!-- inyeccion de dependencias usando setter -->
+    <bean id="mySecretary" class="com.course.springDI.Secretary">
+
+        <property name="newReport" ref="myReport"></property>
+
+        <!-- Inyeccion de dependencias mediante campos-->
+        <property name="email" value="secretaryDeparment@company.es"></property>
+        <property name="companyName" value="Awesome Company"></property>
+
+    </bean>
+
+
+
+</beans>
+
+
+
+
+
